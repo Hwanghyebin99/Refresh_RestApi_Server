@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.21'
 }
 
 group = 'com.example'
@@ -19,11 +20,26 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.2.30'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-kotlin
+    implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.12.4'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    //lombok
+
+    // https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-M1'
+    // https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-nlp
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-nlp', version: '1.0.0-M1'
+    // https://mvnrepository.com/artifact/org.datavec/datavec-api
+    implementation group: 'org.datavec', name: 'datavec-api', version: '1.0.0-M1'
+    implementation group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta6'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     //mybatis
