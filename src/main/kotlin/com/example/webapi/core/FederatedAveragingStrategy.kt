@@ -4,6 +4,7 @@ import com.example.webapi.core.domain.model.ClientUpdate
 import com.example.webapi.core.domain.model.UpdatesStrategy
 import com.example.webapi.core.domain.repository.ServerRepository
 import org.apache.commons.io.FileUtils
+import org.deeplearning4j.nn.modelimport.keras.KerasModelImport
 import org.deeplearning4j.util.ModelSerializer
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
@@ -13,7 +14,8 @@ class FederatedAveragingStrategy(private val repository: ServerRepository, priva
 
     override fun processUpdates(): ByteArrayOutputStream {
         val totalSamples = repository.getTotalSamples()
-        val model = ModelSerializer.restoreMultiLayerNetwork(repository.retrieveModel())
+
+        val model = KerasModelImport.importKerasSequentialModelAndWeights(repository.retrieveModel())
         val shape = model.getLayer(layerIndex).params().shape()
 
         val sumUpdates = repository.listClientUpdates().fold(

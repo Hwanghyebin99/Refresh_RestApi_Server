@@ -15,7 +15,7 @@ interface FederatedServer {
 
     fun getUpdatingRound(): UpdatingRound
 
-    fun getModelFile(): File
+    fun getModelFile(): String
 
     fun getUpdatingRoundAsJson(): String
 }

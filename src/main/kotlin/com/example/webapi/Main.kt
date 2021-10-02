@@ -9,10 +9,11 @@ import java.nio.file.Paths
 import java.util.*
 
 fun main(args: Array<String>) {
-    val properties = Properties()
-    properties.load(FileInputStream("./server/local.properties"))
+//    val properties = Properties()
+//    properties.load(FileInputStream("./server/local.properties"))
 
-    val rootPath = Paths.get(properties.getProperty("model_dir"))
+    val rootPath = Paths.get("C:/Users/BEEN/model")
+//    val rootPath = Paths.get(properties.getProperty("model_dir"))
     val fileDataSource = FileDataSourceImpl(rootPath)
     val memoryDataSource = MemoryDataSourceImpl()
     val repository = ServerRepositoryImpl(fileDataSource, memoryDataSource)

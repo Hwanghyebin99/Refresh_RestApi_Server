@@ -28,10 +28,10 @@ class ServerRepositoryImpl(private val fileDataSource: FileDataSource, private v
 
     override fun retrieveCurrentUpdatingRound(): UpdatingRound = fileDataSource.retrieveCurrentUpdatingRound()
 
-    override fun retrieveModel(): File = fileDataSource.retrieveModel()
+    override fun retrieveModel(): String = fileDataSource.retrieveModel()
 
 
-    override fun storeModel(newModel: ByteArray): File = fileDataSource.storeModel(newModel)
+    override fun storeModel(newModel: ByteArray): String = fileDataSource.storeModel(newModel)
 
     override fun restoreClientUpdates() {
         fileDataSource.getClientUpdates().forEach {

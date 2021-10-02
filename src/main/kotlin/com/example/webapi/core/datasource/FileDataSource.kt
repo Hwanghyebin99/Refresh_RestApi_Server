@@ -9,7 +9,7 @@ interface FileDataSource {
     fun clearUpdates()
     fun saveUpdatingRound(updatingRound: UpdatingRound)
     fun retrieveCurrentUpdatingRound(): UpdatingRound
-    fun retrieveModel(): File
+    fun retrieveModel(): String
     fun getClientUpdates(): List<ClientUpdate>
-    fun storeModel(newModel: ByteArray): File
+    fun storeModel(newModel: ByteArray): String
 }
