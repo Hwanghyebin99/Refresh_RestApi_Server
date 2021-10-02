@@ -40,7 +40,7 @@ class FileDataSourceImpl(private val rootDir: Path): FileDataSource {
     override fun getClientUpdates(): List<ClientUpdate> =
             FileUtils.readLines(cvsFile()).map { addClientUpdate(it) }
 
-    override fun retrieveCurrentUpdatingRound(): UpdatingRound = jacksonObjectMapper().readValue(getCurrentRoundJsonFile())
+    override fun retrieveCurrentUpdatingRound(): UpdatingRound = jacksonObjectMapper().readValue<UpdatingRound>(getCurrentRoundJsonFile())
 
     override fun retrieveModel(): String = modelFile()
 
