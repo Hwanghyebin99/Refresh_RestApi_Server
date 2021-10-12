@@ -9,7 +9,6 @@ import com.example.webapi.core.domain.repository.ServerRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -23,7 +22,7 @@ public class FederatedService {
             // TODO Inject!
             // TODO Properties to SharedConfig
             Properties properties = new Properties();
-            properties.load(new FileInputStream("./local.properties"));
+            properties.load(new FileInputStream("local.properties"));
 
             java.nio.file.Path rootPath = Paths.get(properties.getProperty("model_dir"));
             FileDataSource fileDataSource = new FileDataSourceImpl(rootPath);

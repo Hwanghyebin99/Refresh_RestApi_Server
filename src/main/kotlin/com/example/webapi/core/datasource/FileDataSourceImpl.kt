@@ -5,7 +5,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.example.webapi.core.domain.model.ClientUpdate
 import com.example.webapi.core.domain.model.UpdatingRound
 import org.apache.commons.io.FileUtils
-import org.nd4j.linalg.io.ClassPathResource
+import org.nd4j.common.io.ClassPathResource
 import java.io.File
 import java.io.FileOutputStream
 import java.nio.file.Path
@@ -17,7 +17,7 @@ class FileDataSourceImpl(private val rootDir: Path): FileDataSource {
     companion object {
         const val defaultRoundDir = "currentRound"
         const val currentRoundFileName = "currentRound.json"
-        const val defaultModelFile = "model.zip"
+        const val defaultModelFile = "model"
         const val defaultAllUpdatesFileName = "updates.csv"
     }
 
@@ -61,7 +61,7 @@ class FileDataSourceImpl(private val rootDir: Path): FileDataSource {
     }
 
 //    private fun modelFile() = Paths.get(rootDir.toString(), defaultModelFile).toFile()
-    private fun modelFile() = ClassPathResource("model.h5").file.path;
+    private fun modelFile() = ClassPathResource("deepfm.h5").file.path;
 
     private fun getCurrentRoundJsonFile() = Paths.get(rootDir.toString(), currentRoundFileName).toFile()
 
