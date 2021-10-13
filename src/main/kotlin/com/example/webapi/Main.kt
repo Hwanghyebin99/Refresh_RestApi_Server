@@ -5,12 +5,10 @@ import org.deeplearning4j.nn.modelimport.keras.KerasLayer
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport
 import org.nd4j.autodiff.samediff.SDVariable
 import org.nd4j.autodiff.samediff.SameDiff
-import org.nd4j.common.io.ClassPathResource
 import org.deeplearning4j.nn.conf.inputs.InputType;
-import org.nd4j.nativeblas.Nd4jCpu
+import org.nd4j.common.io.ClassPathResource
 import java.nio.file.Paths
 import java.util.*
-
 
 internal class TensorsSum : SameDiffLambdaLayer() {
     override fun defineLayer(sameDiff: SameDiff, layerInput: SDVariable): SDVariable {
@@ -82,14 +80,14 @@ fun main(args: Array<String>) {
 //    updatesStrategy.processUpdates()
     KerasLayer.registerLambdaLayer("sum_of_tensors", TensorsSum())
     KerasLayer.registerLambdaLayer("square_of_tensors", TensorsSquare())
-    KerasLayer.registerLambdaLayer("lambda_1", Lambda1())
+    KerasLayer.registerLambdaLayer("lambda_2", Lambda1())
     KerasLayer.registerLambdaLayer("cat_embed_2d_genure_mean", TensorMean())
     KerasLayer.registerLambdaLayer("embed_1d_mean", TensorMean())
 
-    val classPathResource = ClassPathResource("model_config_final.json")
-    val weights = ClassPathResource("model_weights.h5")
-//    val inputStream = classPathResource.inputStream
-    val model = KerasModelImport.importKerasModelAndWeights(classPathResource.file.path, weights.file.path);
+    val classPathResource = ClassPathResource("model.h5")
+//    val weights = ClassPathResource("model_weights.h5")
+    val inputStream = classPathResource.inputStream
+    val model = KerasModelImport.importKerasModelAndWeights(inputStream);
     println(model);
 
     //Save the model
