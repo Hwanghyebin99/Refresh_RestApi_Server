@@ -2,7 +2,6 @@ package com.example.webapi
 
 import com.example.webapi.core.domain.model.*
 import com.example.webapi.core.domain.repository.ServerRepository
-import java.io.File
 import java.util.*
 
 class FederatedServerImpl : FederatedServer {

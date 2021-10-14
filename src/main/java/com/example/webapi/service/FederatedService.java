@@ -6,11 +6,16 @@ import com.example.webapi.core.FederatedAveragingStrategy;
 import com.example.webapi.core.datasource.*;
 import com.example.webapi.core.domain.model.*;
 import com.example.webapi.core.domain.repository.ServerRepository;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 @Service
@@ -43,5 +48,33 @@ public class FederatedService {
 
             roundController.startRound();
         }
+    }
+
+    public Map pushGradient(InputStream file, int samples) {
+        Map result = new HashMap();
+        if (file == null) {
+            result.put("success", true);
+        } else {
+            try {
+                byte[] bytes = IOUtils.toByteArray(file);
+                federatedServer.pushUpdate(bytes, samples);
+            } catch (IOException e) {
+                e.printStackTrace();
+                result.put("success", false);
+                return result;
+            }
+            result.put("success", false);
+        }
+        return result;
+    }
+
+    public String getFile() {
+        File file = federatedServer.getModelFile();
+        String fileName = federatedServer.getUpdatingRound().getModelVersion() + ".zip";
+        return fileName;
+    }
+
+    public String getCurrentRound() {
+        return federatedServer.getUpdatingRoundAsJson();
     }
 }
